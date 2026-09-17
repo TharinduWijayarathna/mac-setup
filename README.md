@@ -3,11 +3,29 @@
 My terminal environment, as a single idempotent script. Run it on a fresh Mac
 and get the same shell I use day to day.
 
+Repo: <https://github.com/TharinduWijayarathna/mac-setup> (private)
+
 ## Usage
 
+This repo is **private**, so a fresh Mac needs GitHub auth before it can clone.
+That's mildly circular — `gh` is one of the formulae this script installs — so
+pick whichever bootstrap suits the machine.
+
+**With `gh`:**
+
 ```bash
-git clone <this-repo> ~/mac-setup
+brew install gh          # if Homebrew is already there
+gh auth login
+gh repo clone TharinduWijayarathna/mac-setup ~/mac-setup
 bash ~/mac-setup/install.sh
+```
+
+**Without cloning** — the script is standalone and has no dependency on the
+repo around it, so copying the one file over is enough:
+
+```bash
+scp ~/mac-setup/install.sh newmac:~/
+ssh newmac 'bash ~/install.sh'
 ```
 
 ### Flags
@@ -39,6 +57,17 @@ stay inert on a machine where those aren't installed.
 `vorssaint`
 
 **git** — global `user.name` and `user.email`.
+
+## Where this came from
+
+Captured from my main MacBook (macOS 14 / Darwin 24.6, Apple Silicon) on
+2026-09-17 by reading the live `.zshrc`, `.zprofile`, `~/.oh-my-zsh/custom`,
+`brew leaves`, `brew list --cask` and `~/.gitconfig`. The generated `.zshrc` was
+test-loaded in an isolated `ZDOTDIR` to confirm oh-my-zsh sources cleanly, both
+plugins load, and the alias resolves.
+
+If the source machine drifts, re-capture rather than hand-editing — the point of
+this file is that it matches something real.
 
 ## Not covered
 
